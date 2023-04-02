@@ -1,12 +1,11 @@
 
 import './App.css';
-import LongPulling from "./LongPulling";
-import EventSource from "./EventSource";
+import WebSocket from "./WebSocket";
 
 function App() {
   return (
     <div>
-      <EventSource/>
+      <WebSocket/>
     </div>
   );
 }
