@@ -6,3 +6,8 @@ const wss = new ws.Server(
   },
   () => console.log(`Server started on 5000`)
 );
+function broadcastMessage(message) {
+  wss.clients.forEach((client) => {
+    client.send(JSON.stringify(message));
+  });
+}
