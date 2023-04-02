@@ -1,22 +1,25 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const events = require("events");
 const PORT = 5000;
-const events = require('events');
-const app = express();
+
 const emitter = new events.EventEmitter();
 
+const app = express();
+
 app.use(cors());
-app.get('/get-message', (req, res) => {
-  emitter.once('newMessage', (message) => {
+app.use(express.json());
+
+app.get("/get-messages", (req, res) => {
+  emitter.once("newMessage", (message) => {
     res.json(message);
-  })
+  });
 });
 
-app.post('/new-message', (req,res) => {
+app.post("/new-messages", (req, res) => {
   const message = req.body;
-  emitter.emit('newMessage' , message);
-
+  emitter.emit("newMessage", message);
   res.status(200);
-
 });
-app.listen(app.listen(PORT, () => console.log(`server started on port ${PORT}`)));
+
+app.listen(PORT, () => console.log(`server started on port ${PORT}`));
