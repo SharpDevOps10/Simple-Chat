@@ -8,7 +8,7 @@ const emitter = new events.EventEmitter();
 app.use(cors());
 app.get('get-message', (req, res) => {
   emitter.once('newMessage', (message) => {
-    res.json();
+    res.json(message);
   })
 });
 
