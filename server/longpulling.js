@@ -6,13 +6,13 @@ const app = express();
 const emitter = new events.EventEmitter();
 
 app.use(cors());
-app.get('get-message', (req, res) => {
+app.get('/get-message', (req, res) => {
   emitter.once('newMessage', (message) => {
     res.json(message);
   })
 });
 
-app.post('new-message', (req,res) => {
+app.post('/new-message', (req,res) => {
   const message = req.body;
   emitter.emit('newMessage' , message);
 
