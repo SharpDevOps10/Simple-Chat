@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Button, Container, Grid, TextField} from "@mui/material";
 const Chat = () => {
   const {auth,firestore} = useContext(Context);
   const [user] = useAuthState(auth);
+  const [value, setValue] = useState('');
   return (
     <Container>
       <Grid container
@@ -21,8 +22,15 @@ const Chat = () => {
           alingItems={"flex-end"}
           style={{width : '80%'}}
         >
-          <TextField variant={"outlined"}/>
-          <Button>Send</Button>
+          <TextField
+            fullWidth
+            rowsMax={2}
+            variant={"outlined"}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+
+          />
+          <Button variant={"outlined"}>Send</Button>
 
         </Grid>
 
