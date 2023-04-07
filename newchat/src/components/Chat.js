@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {Button, Container, Grid, TextField} from "@mui/material";
+import {Avatar, Button, Container, Grid, TextField} from "@mui/material";
 import firebase from "firebase/compat/app";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import Loader from "./Loader";
@@ -32,8 +32,21 @@ const Chat = () => {
 
             justify={"center"}>
             <div style={{width : '8.0%', height : '70vh', border : '1px solid gray', overflowY : 'auto'}}>
-
-
+              {messages.map(message =>
+                <div style={{
+                  margin: 10,
+                  border: user.uid === message.uid ? '2px solid green' : '2px dashed red',
+                  marginLeft: user.uid === message.uid ? 'auto' : '10px',
+                  width: 'fit-content',
+                  padding: 5,
+                }}>
+                  <Grid container>
+                    <Avatar src={message.photoURL}/>
+                    <div>{message.displayName}</div>
+                  </Grid>
+                  <div>{message.text}</div>
+                </div>
+              )}
             </div>
         <Grid
           container
