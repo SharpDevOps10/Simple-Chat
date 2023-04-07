@@ -13,7 +13,7 @@ const Navbar = () => {
         <Toolbar variant={"dense"}>
           <Grid container justify={"flex-end"}>
             {user ?
-              <Button variant={"outlined"}>Exit</Button>
+              <Button onClick={() => auth.signOut()} variant={"outlined"}>Exit</Button>
               :
               <NavLink to={LOGIN_ROUTE}>
                 <Button variant={"outlined"}>Log in</Button>
