@@ -3,10 +3,15 @@ import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Button, Container, Grid, TextField} from "@mui/material";
 import firebase from "firebase/compat/app";
+import {useCollectionData} from "react-firebase-hooks/firestore";
+import Loader from "./Loader";
 const Chat = () => {
   const {auth,firestore} = useContext(Context);
   const [user] = useAuthState(auth);
   const [value, setValue] = useState('');
+  const [messages, loading] = useCollectionData(
+    firestore.collection('messages').orderBy('createdAt')
+  );
   const sendMessage = async () => {
     firestore.collection('messages').add({
       uid: user.uid,
@@ -17,6 +22,9 @@ const Chat = () => {
     })
     setValue('');
   };
+  if (loading) {
+    return <Loader/>
+  }
   return (
     <Container>
       <Grid container
@@ -41,7 +49,7 @@ const Chat = () => {
             onChange={(e) => setValue(e.target.value)}
 
           />
-          <Button variant={"outlined"}>Send</Button>
+          <Button onClick={sendMessage} variant={"outlined"}>Send</Button>
 
         </Grid>
 
