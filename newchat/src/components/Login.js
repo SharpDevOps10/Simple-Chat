@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Grid} from "@mui/material";
+import {Box, Button, Container, Grid} from "@mui/material";
 const Login = () => {
   return (
     <Container>
@@ -8,7 +8,15 @@ const Login = () => {
             alignItems={"center"}
             justify={"center"}
       >
-        Hello-Goodbye
+        <Grid style={{width : 4000, background : 'lightgray'}}
+              container
+              alignItems={"center"}
+              direction={"column"}
+        >
+          <Box p={5}>
+            <Button>Enter with Google</Button>
+          </Box>
+        </Grid>
       </Grid>
     </Container>
 
