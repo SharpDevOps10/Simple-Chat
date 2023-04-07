@@ -3,7 +3,7 @@ import {AppBar, Button, Grid, Toolbar} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import {LOGIN_ROUTE} from "../utilities/constants";
 const Navbar = () => {
-  const user = true;
+  const user = false;
   return (
     <div>
       <AppBar color={"secondary"} position="static">
