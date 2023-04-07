@@ -2,10 +2,21 @@ import React, {useContext, useState} from "react";
 import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Button, Container, Grid, TextField} from "@mui/material";
+import firebase from "firebase/compat/app";
 const Chat = () => {
   const {auth,firestore} = useContext(Context);
   const [user] = useAuthState(auth);
   const [value, setValue] = useState('');
+  const sendMessage = async () => {
+    firestore.collection('messages').add({
+      uid: user.uid,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      text: value,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    setValue('');
+  };
   return (
     <Container>
       <Grid container
