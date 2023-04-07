@@ -6,8 +6,8 @@ const Navbar = () => {
       <AppBar color={"secondary"} position="static">
         <Toolbar>
           <Grid container justify={"flex-end"}>
-            <Button>Login</Button>
-            <Button>Exit</Button>
+            <Button variant={"outlined"}>Login</Button>
+            <Button variant={"outlined"}>Exit</Button>
 
           </Grid>
 
